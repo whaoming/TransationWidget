@@ -45,7 +45,7 @@
                     android:layout_toRightOf="@+id/cb"
                     android:id="@+id/tv_text"
                     android:layout_centerVertical="true"
-                    android:text="产品总数量:5"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <Button

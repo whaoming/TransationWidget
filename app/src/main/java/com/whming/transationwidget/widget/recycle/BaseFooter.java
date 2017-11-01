@@ -3,8 +3,12 @@ package com.whming.transationwidget.widget.recycle;
 import android.view.View;
 
 /**
- * Created by lion on 2017/2/19.
- */
+* author: whming
+* github: https://github.com/whaoming
+* date: 2017/10/12
+* TODO: recyclerview的底部footer
+* remark: nothing
+*/
 public abstract class BaseFooter {
     public boolean loading = false;
     public boolean hasMoreData = true;

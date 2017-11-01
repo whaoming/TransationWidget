@@ -12,24 +12,33 @@ import android.widget.TextView;
 
 import com.whming.transationwidget.R;
 import com.whming.transationwidget.extra.MyTreeItem;
+import com.whming.transationwidget.extra.bean.Dao;
 import com.whming.transationwidget.extra.bean.Level1;
 import com.whming.transationwidget.extra.bean.Level2;
 import com.whming.transationwidget.extra.bean.Level3;
-import com.whming.transationwidget.widget.AmountButton;
-import com.whming.transationwidget.widget.recycle.MutiRecyclerViewAdapter;
+import com.whming.transationwidget.widget.adapter.ShopCarAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+/**
+* author: whming
+* github: https://github.com/whaoming
+* date: 2017/10/12
+* TODO: 购物车页面
+* remark: nothing
+*/
 public class ShopCarActivity extends AppCompatActivity {
 
     private RecyclerView listview;
     private List<Level1> source;
-    private List<MyTreeItem<Object>> mDatas;
+    private List<MyTreeItem<Dao>> mDatas;
     private ShopCarAdapter mAdapter;
     private CheckBox cb;
     private Button edit;
     private boolean isEdit = false;
+    private TextView tv_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +60,11 @@ public class ShopCarActivity extends AppCompatActivity {
                     mAdapter.clearSelected();
                 }
 
+                tv_text.setText(mAdapter.calcul());
+
             }
         });
-
+        tv_text = (TextView) findViewById(R.id.tv_text);
         edit = (Button) findViewById(R.id.edit);
         listview = (RecyclerView) findViewById(R.id.listview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -67,6 +78,12 @@ public class ShopCarActivity extends AppCompatActivity {
             @Override
             public void onAllSeleted(boolean flag) {
                 cb.setChecked(flag);
+                tv_text.setText(mAdapter.calcul());
+            }
+
+            @Override
+            public void onSelected(String content) {
+                tv_text.setText(content);
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +92,10 @@ public class ShopCarActivity extends AppCompatActivity {
                 isEdit = !isEdit;
                 if(isEdit){
                     edit.setText("删除并完成");
-                    delete();
+//                    Integer[] selectedIndices = mAdapter.getSelectedIndices();
+//                    List<Integer> integers = Arrays.asList(selectedIndices);
+//                    Set strSet = new HashSet(Arrays.asList(integers));
+//                    delete(strSet);
                 }else{
                     edit.setText("编辑");
                 }
@@ -83,8 +103,34 @@ public class ShopCarActivity extends AppCompatActivity {
         });
     }
 
-    private void delete() {
-
+    private void delete(Set<Integer> integers) {
+        for(int i=0;i<source.size();i++){
+            Level1 level1 = source.get(i);
+            if(integers.contains(level1.id)){
+                source.remove(i);
+                continue;
+            }
+            for(int j=0;j<level1.level2List.size();j++){
+                Level2 level2 = level1.level2List.get(j);
+                if(integers.contains(level2.id)){
+                    level1.level2List.remove(j);
+                    continue;
+                }
+                for(int k=0;k<level2.level3List.size();k++){
+                    Level3 level3 = level2.level3List.get(k);
+                    if(integers.contains(level3.id)){
+                        level2.level3List.remove(k);
+                    }
+                }
+                if(level2.level3List.size()==0){
+                    level1.level2List.remove(level2);
+                }
+            }
+            if(level1.level2List.size()==0){
+                source.remove(i);
+            }
+        }
+        loadData();
     }
 
     private void initData() {
@@ -106,9 +152,14 @@ public class ShopCarActivity extends AppCompatActivity {
             }
             source.add(l1);
         }
+        loadData();
         /**
          * *********************完成假数据的模拟**************************
          */
+
+    }
+
+    private void loadData() {
         MyTreeItem item;
         int temp;
         for (int i = 0; i < source.size(); i++) {
@@ -117,6 +168,7 @@ public class ShopCarActivity extends AppCompatActivity {
             item.data = level1;
             item.parent = -1;
             mDatas.add(item);
+            level1.id = mDatas.size()-1;
             temp = mDatas.size() - 1;
             for (int j = 0; j < level1.level2List.size(); j++) {
                 Level2 level2 = level1.level2List.get(j);
@@ -124,179 +176,19 @@ public class ShopCarActivity extends AppCompatActivity {
                 item.data = level2;
                 item.parent = temp;
                 mDatas.add(item);
+                level2.id = mDatas.size()-1;
                 for (int k = 0; k < level2.level3List.size(); k++) {
                     Level3 level3 = level2.level3List.get(k);
                     item = new MyTreeItem();
                     item.data = level3;
                     item.parent = mDatas.size() - k - 1;
                     mDatas.add(item);
+                    level3.id = mDatas.size()-1;
                 }
             }
         }
         mAdapter.notifyDataSetChanged();
     }
 
-    private static class ShopCarAdapter extends MutiRecyclerViewAdapter<MyTreeItem<Object>, MutiRecyclerViewAdapter.RecyclerViewHolder> {
 
-        static final int TYPE_LEVEL_1 = 1;
-        static final int TYPE_LEVEL_2 = 2;
-        static final int TYPE_LEVEL_3 = 3;
-
-        private OptionListener listener;
-
-
-        ShopCarAdapter(RecyclerView recyclerView, List<MyTreeItem<Object>> mData) {
-            super(recyclerView, mData);
-
-            initCustomType();
-        }
-
-        private void initCustomType() {
-            multiItemType = new MultiItemType<MyTreeItem<Object>>() {
-                @Override
-                public int getLayoutId(int itemType) {
-                    if (itemType == TYPE_LEVEL_1) {
-                        return R.layout.item_1;
-                    } else if (itemType == TYPE_LEVEL_2) {
-                        return R.layout.item_2;
-                    } else {
-                        return R.layout.item_3;
-                    }
-                }
-
-                @Override
-                public int getItemViewType(int position, MyTreeItem<Object> s) {
-                    if (s.data instanceof Level1) {
-                        return TYPE_LEVEL_1;
-                    } else if (s.data instanceof Level2) {
-                        return TYPE_LEVEL_2;
-                    } else {
-                        return TYPE_LEVEL_3;
-                    }
-                }
-            };
-
-        }
-
-
-        @Override
-        public void bindDataToItemView(RecyclerViewHolder recyclerViewHolder, MyTreeItem<Object> item, final int position) {
-            int itemViewType = getItemViewType(position);
-            TextView tv = recyclerViewHolder.getView(R.id.tv);
-            CheckBox cb = recyclerViewHolder.getView(R.id.cb);
-            cb.setChecked(isIndexSelected(position));
-
-            switch (itemViewType) {
-                case TYPE_LEVEL_1:
-                    Level1 l1 = (Level1) item.data;
-                    tv.setText(l1.name);
-                    break;
-                case TYPE_LEVEL_2:
-                    Level2 l2 = (Level2) item.data;
-                    tv.setText(l2.name);
-                    break;
-                case TYPE_LEVEL_3:
-                    final Level3 l3 = (Level3) item.data;
-                    tv.setText(l3.name);
-                    AmountButton btnCount = recyclerViewHolder.getView(R.id.abb);
-                    btnCount.setOnWarnListener(null);
-                    btnCount.setCurrentNumber(l3.count);
-                    btnCount.setOnWarnListener(new AmountButton.OnWrongCountListener() {
-                        @Override
-                        public void onUnderMinCount(int inventory) {
-
-                        }
-
-                        @Override
-                        public void onExceedMaxCount(int max) {
-
-                        }
-
-                        @Override
-                        public void onNumberChange(int number) {
-                            l3.count = number;
-                        }
-                    });
-                    break;
-            }
-            cb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    toggleSelected(position);
-                    setChildState(position, isIndexSelected(position), true);
-                }
-            });
-        }
-
-
-
-        /**
-         * 设置某个父亲节点下的所有子节点的状态
-         * @param postion 父亲节点的位置
-         * @param state   目标状态
-         */
-        private void setChildState(int postion, boolean state, boolean flag) {
-            for (int i = 0; i < mData.size(); i++) {
-                MyTreeItem item = mData.get(i);
-                //检查postiion下有没有子节点
-                if (item.parent == postion) {
-                    //如果目标item的parent是这个，那么设置状态
-                    setSelected(i, state);
-                    //然后还要检查这个子节点下的更下一层的子节点
-                    setChildState(i, state, false);
-                }
-            }
-            if (flag) {
-                //检查父亲节点下的所有子节点的状态是否一致
-                checkParentState(postion, state);
-            }
-        }
-
-        /**
-         * 检查父亲节点下的所有节点,当发现所有子节点为同一状态时改变父亲节点的状态
-         * @param position 当前点击的子节点的位置
-         * @param state    当前状态
-         */
-        private void checkParentState(int position, boolean state) {
-            int parentPosition = mData.get(position).parent;
-            boolean flag = true;
-            for (int i = 0; i < mData.size(); i++) {
-                MyTreeItem item = mData.get(i);
-                if (item.parent == parentPosition) {
-                    boolean indexSelected = isIndexSelected(i);
-                    if (indexSelected != state) {
-                        flag = false;
-                    }
-                }
-            }
-            if (parentPosition == -1) {
-                if(listener!=null){
-                    listener.onAllSeleted(flag);
-                }
-                return;
-            }
-            if (state) {
-                setSelected(parentPosition, flag);
-            } else {
-                setSelected(parentPosition, false);
-            }
-            //检查父亲节点下的所有子节点的状态是否一致
-            checkParentState(parentPosition, state);
-        }
-
-        @Override
-        public int getAdapterLayout() {
-            return 0;
-        }
-
-
-        public void setOptionListener(OptionListener lis){
-            this.listener = lis;
-
-        }
-
-        public  interface OptionListener{
-            void onAllSeleted(boolean flag);
-        }
-    }
 }

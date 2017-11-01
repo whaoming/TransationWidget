@@ -6,11 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.whming.transationwidget.activity.DetailActivity;
 import com.whming.transationwidget.activity.ShopCarActivity;
 
+/**
+* author: whming
+* github: https://github.com/whaoming
+* date: 2017/10/12
+* TODO: 主页面 入口页面
+* remark: nothing
+*/
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_car;
+    private Button btn_car,btn_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +32,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_detail = (Button) findViewById(R.id.btn_detail);
+        btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -7,10 +7,14 @@ import android.view.View;
 
 import com.whming.transationwidget.R;
 
-/**
- * Created by squirrel on 2017/10/10.
- */
 
+/**
+* author: whming
+* github: https://github.com/whaoming
+* date: 2017/10/12
+* TODO: 略
+* remark: nothing
+*/
 class SimpleLoadMoreFooter extends BaseFooter {
 
     private View view;

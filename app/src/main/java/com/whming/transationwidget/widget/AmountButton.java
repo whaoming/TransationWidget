@@ -44,7 +44,7 @@ public class AmountButton extends LinearLayout implements View.OnClickListener, 
         LayoutInflater.from(context).inflate(R.layout.widget_amount_button, this);
         findViewById(R.id.rl_less).setOnClickListener(this);
         findViewById(R.id.rl_plus).setOnClickListener(this);
-        et_ab = findViewById(R.id.et_ab);
+        et_ab = (EditText) findViewById(R.id.et_ab);
         et_ab.addTextChangedListener(this);
         et_ab.setOnClickListener(this);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AmountButton);
@@ -60,7 +60,7 @@ public class AmountButton extends LinearLayout implements View.OnClickListener, 
             findViewById(R.id.rl_textcontent).setLayoutParams(textParams);
         }
         et_ab.setSelection(et_ab.getText().toString().trim().length());
-        TextView tv_unit = findViewById(R.id.tv_unit);
+        TextView tv_unit = (TextView) findViewById(R.id.tv_unit);
         if(TextUtils.isEmpty(unit)){
             tv_unit.setVisibility(View.GONE);
         }else{
