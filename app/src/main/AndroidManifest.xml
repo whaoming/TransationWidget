@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".activity.ShopCarActivity" />
         <activity android:name=".activity.DetailActivity" />
+        <activity android:name=".print.PrintActivity" />
+        <activity android:name=".print.PriviewActivity"></activity>
     </application>
 
 </manifest>

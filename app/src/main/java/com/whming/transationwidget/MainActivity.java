@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.whming.transationwidget.activity.DetailActivity;
 import com.whming.transationwidget.activity.ShopCarActivity;
+import com.whming.transationwidget.print.PrintActivity;
 
 /**
 * author: whming
@@ -18,7 +19,7 @@ import com.whming.transationwidget.activity.ShopCarActivity;
 */
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_car,btn_detail;
+    private Button btn_car,btn_detail,btn_print;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +42,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_print = (Button) findViewById(R.id.btn_print);
+        btn_print.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PrintActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
