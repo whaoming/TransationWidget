@@ -22,6 +22,8 @@ public class PrintHelper {
     private PrintUtil printUtil;
     private static PrintHelper INSTANCE;
     private Context mContext;
+    private boolean isConnect = false;
+
     private PrintHelper(){}
     public static PrintHelper getInstance(){
        if(INSTANCE==null){
@@ -30,14 +32,26 @@ public class PrintHelper {
        return INSTANCE;
     }
 
-    public void init(BluetoothSocket bluetoothSocket,Context mContext)  {
+    public void init(Context mContext)  {
         try {
             columns = new ArrayList<>();
-            printUtil = new PrintUtil(bluetoothSocket.getOutputStream(), "GBK");
             this.mContext = mContext;
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void initBuleTouth(BluetoothSocket bluetoothSocket){
+        try {
+            isConnect = true;
+            printUtil = new PrintUtil(bluetoothSocket.getOutputStream(), "GBK");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isConnect(){
+        return isConnect;
     }
 
     public void print(){
@@ -60,9 +74,9 @@ public class PrintHelper {
                         }
                         if(column.textSize != 14){
                             //打印大字
-                            printUtil.printLargeText(column.text1);
+                            printUtil.printLargeText(column.text1+"\n");
                         }else {
-                            printUtil.printText(column.text1);
+                            printUtil.printText(column.text1+"\n");
                         }
                         printUtil.printAlignment(0);
                         break;
@@ -74,7 +88,11 @@ public class PrintHelper {
                         break;
                     case Column.TYPE_LINE:
                         if(column.lineType == Column.LINE_EMPTY){
-                            printUtil.printLine(column.lineCount);
+                            if (column.lineCount==1) {
+                                printUtil.printText("\n");
+                            }else {
+                                printUtil.printLine(column.lineCount);
+                            }
                         }else if(column.lineType == Column.LINE_DASH){
                             printUtil.printDashLine();
                         }
@@ -86,7 +104,7 @@ public class PrintHelper {
                 }
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -98,6 +116,10 @@ public class PrintHelper {
 
     public List<Column> getColumns(){
         return columns;
+    }
+
+    public void closeConnect(){
+        this.isConnect = false;
     }
 
 

@@ -1,4 +1,4 @@
-package com.whming.transationwidget.widget.dot;
+package com.whming.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
-import com.whming.transationwidget.R;
 
 
 /**

@@ -1,1 +1,1 @@
-include ':app', ':print'
+include ':app', ':print', ':widget'

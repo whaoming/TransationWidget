@@ -1,4 +1,4 @@
-package com.whming.transationwidget.activity;
+package com.whming.transationwidget.detail;
 
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.whming.transationwidget.R;
-import com.whming.transationwidget.widget.dot.TopView;
+import com.whming.widget.TopView;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -80,9 +80,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tv_add = (TextView) findViewById(R.id.tv_add);
 
         topView = TopView.attach2Window(this);
-
         tab1 = findViewById(R.id.tab1);
-
         tab2 = findViewById(R.id.tab2);
         tab3 = findViewById(R.id.tab3);
         tab4 = findViewById(R.id.tab4);

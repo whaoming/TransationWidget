@@ -1,4 +1,4 @@
-package com.whming.transationwidget.widget;
+package com.whming.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.whming.transationwidget.R;
 
 
 /**
@@ -83,28 +81,26 @@ public class AmountButton extends LinearLayout implements View.OnClickListener, 
     public void onClick(View v) {
         et_ab.requestFocus();
         int count = getNumber();
-        switch (v.getId()){
-            case R.id.rl_less:
-                if (count > minCount) {
-                    //正常减
-                    et_ab.setText("" + (count - 1));
-                    et_ab.setSelection(et_ab.getText().toString().trim().length());
-                }else{
-                    underMinCount();
-                }
-                break;
-            case R.id.rl_plus:
-                if (count < maxCount) {
-                    et_ab.setText("" + (count + 1));
-                    et_ab.setSelection(et_ab.getText().toString().trim().length());
-                }
-                else {
-                    exceedMaxCount();
-                }
-                break;
-            case R.id.et_ab:
-                et_ab.setSelection(et_ab.getText().toString().length());
-                break;
+        int i = v.getId();
+        if (i == R.id.rl_less) {
+            if (count > minCount) {
+                //正常减
+                et_ab.setText("" + (count - 1));
+                et_ab.setSelection(et_ab.getText().toString().trim().length());
+            } else {
+                underMinCount();
+            }
+        } else if (i == R.id.rl_plus) {
+            if (count < maxCount) {
+                et_ab.setText("" + (count + 1));
+                et_ab.setSelection(et_ab.getText().toString().trim().length());
+            } else {
+                exceedMaxCount();
+            }
+
+        } else if (i == R.id.et_ab) {
+            et_ab.setSelection(et_ab.getText().toString().length());
+
         }
     }
 

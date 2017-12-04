@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.whming.transationwidget">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ShopCarActivity" />
-        <activity android:name=".activity.DetailActivity" />
-        <activity android:name=".print.PrintActivity" />
-        <activity android:name=".print.PriviewActivity"></activity>
+        <activity android:name=".shopcart.ShopCarActivity" />
+        <activity android:name=".detail.DetailActivity" />
+        <activity android:name=".print.PriviewActivity" />
+        <activity android:name=".print.DeviceListActivity" />
+        <activity android:name=".shopcart.AnimShopCartActivity"></activity>
     </application>
 
 </manifest>

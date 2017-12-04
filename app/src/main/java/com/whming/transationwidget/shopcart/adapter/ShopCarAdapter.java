@@ -1,4 +1,4 @@
-package com.whming.transationwidget.widget.adapter;
+package com.whming.transationwidget.shopcart.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,8 +11,8 @@ import com.whming.transationwidget.extra.bean.Dao;
 import com.whming.transationwidget.extra.bean.Level1;
 import com.whming.transationwidget.extra.bean.Level2;
 import com.whming.transationwidget.extra.bean.Level3;
-import com.whming.transationwidget.widget.AmountButton;
 import com.whming.transationwidget.widget.recycle.MutiRecyclerViewAdapter;
+import com.whming.widget.AmountButton;
 
 import java.util.Arrays;
 import java.util.List;

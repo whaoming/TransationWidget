@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    >
     <android.support.v4.widget.NestedScrollView
+        android:layout_above="@+id/rl_bottom"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <FrameLayout
             android:id="@+id/fl_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </FrameLayout>
-        <Button
-            android:id="@+id/btn_print"
-            android:text="打印"
+
+    </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rl_bottom"
+        android:background="#f5f5f5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:text="未连接打印机"
+            android:id="@+id/tv_state"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
-    </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_print"
+            android:text="打印"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+</RelativeLayout>

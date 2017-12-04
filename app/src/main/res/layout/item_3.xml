@@ -20,7 +20,7 @@
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.whming.transationwidget.widget.AmountButton
+        <com.whming.widget.AmountButton
             android:id="@+id/abb"
             app:unit="个"
             android:layout_marginLeft="20dp"

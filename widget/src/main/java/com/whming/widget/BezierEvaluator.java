@@ -1,4 +1,4 @@
-package com.whming.transationwidget.widget.dot;
+package com.whming.widget;
 
 import android.animation.TypeEvaluator;
 import android.annotation.TargetApi;

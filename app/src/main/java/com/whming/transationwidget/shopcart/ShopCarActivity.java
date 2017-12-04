@@ -1,4 +1,4 @@
-package com.whming.transationwidget.activity;
+package com.whming.transationwidget.shopcart;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +16,7 @@ import com.whming.transationwidget.extra.bean.Dao;
 import com.whming.transationwidget.extra.bean.Level1;
 import com.whming.transationwidget.extra.bean.Level2;
 import com.whming.transationwidget.extra.bean.Level3;
-import com.whming.transationwidget.widget.adapter.ShopCarAdapter;
+import com.whming.transationwidget.shopcart.adapter.ShopCarAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whming.transationwidget.shopcart.AnimShopCartActivity">
+
+<android.support.v7.widget.RecyclerView
+    android:layout_above="@+id/rl_canbuy"
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rl_canbuy"
+        android:layout_width="match_parent"
+        android:layout_height="50.5dp"
+        android:background="#ffffff">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/ll_btn"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="收藏"
+                android:textSize="10dp"
+                android:visibility="gone" />
+
+            <!--<View-->
+            <!--android:layout_width="0.5dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/issue_demand_divider" />-->
+
+
+            <RelativeLayout
+                android:id="@+id/rl_car"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:drawableTop="@mipmap/icon_grey_gwc"
+                    android:id="@+id/tv_car"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:text="购物车"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_unread_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:textColor="#ffffff"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:id="@+id/tv_add"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#f86c1c"
+                android:gravity="center"
+                android:text="加入购物车"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/tv_buynow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffa200"
+                android:gravity="center"
+                android:text="立即购买"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

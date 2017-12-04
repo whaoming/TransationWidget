@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_centerInParent="true"
+android:layout_width="96.5dp"
+android:layout_height="27dp">
+<ImageView
+    android:id="@+id/iv_del"
+    android:visibility="invisible"
+    android:src="@mipmap/icon_cart_del"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+<TextView
+    android:gravity="center"
+    android:id="@+id/tv"
+    android:text="11"
+    android:visibility="invisible"
+    android:focusable="false"
+    android:background="@null"
+    android:layout_width="42.5dp"
+    android:layout_height="match_parent" />
+<ImageView
+    android:id="@+id/iv_add"
+    android:src="@mipmap/icon_cart_add"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</LinearLayout>

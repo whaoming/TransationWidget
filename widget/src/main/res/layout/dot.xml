@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whming.transationwidget.widget.dot.MovedView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whming.widget.MovedView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -7,4 +7,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView" />
-</com.whming.transationwidget.widget.dot.MovedView>
+</com.whming.widget.MovedView>

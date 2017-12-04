@@ -1,8 +1,9 @@
 package com.whming.print.bean;
 
 
+import java.io.Serializable;
 
-public class Column {
+public class Column implements Serializable{
 
 
     /**
