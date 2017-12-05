@@ -8,4 +8,6 @@
 ![](https://github.com/whaoming/TransationWidget/blob/master/GIF3.gif)![](https://github.com/whaoming/TransationWidget/blob/master/record1.gif)
 
 ![](https://github.com/whaoming/TransationWidget/blob/master/shopcart.gif)![](https://github.com/whaoming/TransationWidget/blob/master/anim.gif)
+![](https://github.com/whaoming/TransationWidget/blob/master/IMG_20171205_110312(1).jpg.gif)
+
 
