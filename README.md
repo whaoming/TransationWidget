@@ -5,7 +5,7 @@
 添加到购物车动画 
 
 
-![](https://github.com/whaoming/TransationWidget/blob/master/ScreenReco_clip.gif)![](https://github.com/whaoming/TransationWidget/blob/master/ScreenReco_clip1.gif)
+![](https://github.com/whaoming/TransationWidget/blob/master/GIF3.gif)![](https://github.com/whaoming/TransationWidget/blob/master/ScreenReco_clip1.gif)
 
 ![](https://github.com/whaoming/TransationWidget/blob/master/ScreenReco_clip2.gif)![](https://github.com/whaoming/TransationWidget/blob/master/ScreenReco_clip3.gif)
 
